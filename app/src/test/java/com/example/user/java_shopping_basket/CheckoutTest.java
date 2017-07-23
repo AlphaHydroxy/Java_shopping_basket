@@ -40,17 +40,29 @@ public class CheckoutTest {
 //    @Test
 //    public void shouldTakeTenPercentOff(){
 //        this.basket.addItem(new Item(ElectricalGoods.DESKTOP));
-//        Checkout testCheckout = new Checkout(this.basket);
+//        Checkout testCheckout = new Checkout(this.basket, this.customer);
 //        assertEquals(989.1, testCheckout.tenPercentOffWhenTotalIsTwentyOrOver());
 //    }
 
 //    this test should also pass - no difference between expected and actual!
+//    @Test
+//    public void shouldTakeTwoPercentOffIfCustomerHasLoyaltyCard(){
+//        this.basket.addItem(new Item(ElectricalGoods.DESKTOP));
+//        Checkout testCheckout = new Checkout(this.basket, this.customer);
+//        assertEquals(1077.02, testCheckout.twoPercentOffWhenCustomerHasLoyaltyCard());
+//    }
+
     @Test
-    public void shouldTakeTwoPercentOffIfCustomerHasLoyaltyCard(){
-        this.basket.addItem(new Item(ElectricalGoods.DESKTOP));
-//        Customer
+    public void testAll(){
+        this.basket.addItem(new Item(ElectricalGoods.MOUSE));
+        this.basket.addItem(new Item(ElectricalGoods.MOUSE));
+        this.basket.addItem((new Item(ElectricalGoods.KEYBOARD)));
+        this.basket.addItem((new Item(ElectricalGoods.MONITOR)));
         Checkout testCheckout = new Checkout(this.basket, this.customer);
-        assertEquals(1077.02, testCheckout.twoPercentOffWhenCustomerHasLoyaltyCard());
+        assertEquals(19, testCheckout.buyOneGetOneFree(this.basket.getContents().get(0), this.basket.getContents().get(0)));
+        assertEquals(236.7, testCheckout.tenPercentOffWhenTotalIsTwentyOrOver());
+        assertEquals(231.97, testCheckout.twoPercentOffWhenCustomerHasLoyaltyCard());
+
     }
 
 }
