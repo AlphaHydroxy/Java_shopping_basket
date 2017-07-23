@@ -11,8 +11,9 @@ public class Checkout {
     private Customer customer;
     private ElectricalGoods electricalGoods;
 
-    public Checkout(ShoppingBasket _basket){
+    public Checkout(ShoppingBasket _basket, Customer customer){
         this.basket = _basket;
+        this.customer = customer;
     }
 
     public int totalBasketValue(){
@@ -46,7 +47,8 @@ public class Checkout {
     public float twoPercentOffWhenCustomerHasLoyaltyCard(){
         float total = totalBasketValue();
         float totalWithDiscount = 0;
-        if(customer.hasLoyaltyCard() == true){
+        boolean hasCard = customer.hasLoyaltyCard() == true;
+        if(hasCard == true){
             totalWithDiscount += totalBasketValue() * (2.0f/100.0f);
             return total -= totalWithDiscount;
         }

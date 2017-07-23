@@ -11,10 +11,12 @@ import static junit.framework.Assert.assertEquals;
 
 public class CheckoutTest {
     ShoppingBasket basket;
+    Customer customer;
 
     @Before
     public void before(){
         this.basket = new ShoppingBasket();
+        this.customer = new Customer();
     }
 
     @Test
@@ -22,7 +24,7 @@ public class CheckoutTest {
         this.basket.addItem(new Item(ElectricalGoods.LAPTOP));
         this.basket.addItem(new Item(ElectricalGoods.MONITOR));
         this.basket.addItem(new Item(ElectricalGoods.SPEAKERS));
-        Checkout testCheckout = new Checkout(this.basket);
+        Checkout testCheckout = new Checkout(this.basket, this.customer);
         assertEquals(1133, testCheckout.totalBasketValue());
     }
 
@@ -30,10 +32,11 @@ public class CheckoutTest {
     public void sameItemsAreBOGOF(){
         this.basket.addItem(new Item(ElectricalGoods.LAPTOP));
         this.basket.addItem(new Item(ElectricalGoods.LAPTOP));
-        Checkout testCheckout = new Checkout(this.basket);
+        Checkout testCheckout = new Checkout(this.basket, this.customer);
         assertEquals(899, testCheckout.buyOneGetOneFree(this.basket.getContents().get(0), this.basket.getContents().get(1)));
     }
 
+//    this test should pass - no differences between expected and actual?
 //    @Test
 //    public void shouldTakeTenPercentOff(){
 //        this.basket.addItem(new Item(ElectricalGoods.DESKTOP));
@@ -44,8 +47,8 @@ public class CheckoutTest {
     @Test
     public void shouldTakeTwoPercentOffIfCustomerHasLoyaltyCard(){
         this.basket.addItem(new Item(ElectricalGoods.DESKTOP));
-        Checkout testCheckout = new Checkout(this.basket);
-        assertEquals(989.1, testCheckout.twoPercentOffWhenCustomerHasLoyaltyCard());
+        Checkout testCheckout = new Checkout(this.basket, this.customer);
+        assertEquals(1077.02, testCheckout.twoPercentOffWhenCustomerHasLoyaltyCard());
     }
 
 }
