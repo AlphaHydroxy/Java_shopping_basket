@@ -55,5 +55,4 @@ public class Checkout {
         else return total;
     }
 
-
 }
