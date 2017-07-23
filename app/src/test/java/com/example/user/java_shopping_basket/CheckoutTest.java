@@ -44,9 +44,11 @@ public class CheckoutTest {
 //        assertEquals(989.1, testCheckout.tenPercentOffWhenTotalIsTwentyOrOver());
 //    }
 
+//    this test should also pass - no difference between expected and actual!
     @Test
     public void shouldTakeTwoPercentOffIfCustomerHasLoyaltyCard(){
         this.basket.addItem(new Item(ElectricalGoods.DESKTOP));
+//        Customer
         Checkout testCheckout = new Checkout(this.basket, this.customer);
         assertEquals(1077.02, testCheckout.twoPercentOffWhenCustomerHasLoyaltyCard());
     }

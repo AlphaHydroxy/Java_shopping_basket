@@ -47,7 +47,7 @@ public class Checkout {
     public float twoPercentOffWhenCustomerHasLoyaltyCard(){
         float total = totalBasketValue();
         float totalWithDiscount = 0;
-        boolean hasCard = customer.hasLoyaltyCard() == true;
+        boolean hasCard = customer.hasLoyaltyCard() == false;
         if(hasCard == true){
             totalWithDiscount += totalBasketValue() * (2.0f/100.0f);
             return total -= totalWithDiscount;
